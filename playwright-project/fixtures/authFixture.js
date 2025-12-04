@@ -1,5 +1,5 @@
 import { test as base } from '@playwright/test';
-import { LoginPage } from '../page-objects/LoginPage.js';
+import { SigninPage } from '../page-objects/SigninPage.js';
 
 /**
  * Auth fixture to handle login/session states.
@@ -14,15 +14,15 @@ export const test = base.extend({
         await use(credentials);
     },
 
-    loginPage: async ({ page }, use) => {
-        const loginPage = new LoginPage(page);
-        await use(loginPage);
+    signinPage: async ({ page }, use) => {
+        const signinPage = new SigninPage(page);
+        await use(signinPage);
     },
 
     // Example of an authenticated page fixture
-    authenticatedPage: async ({ page, loginPage, user }, use) => {
-        await loginPage.navigate();
-        await loginPage.login(user.username, user.password);
+    authenticatedPage: async ({ page, signinPage, user }, use) => {
+        await signinPage.navigate();
+        await signinPage.login(user.username, user.password);
         // Wait for navigation or verification here
         await use(page);
     },

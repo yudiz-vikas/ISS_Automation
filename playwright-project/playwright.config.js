@@ -17,6 +17,11 @@ export default defineConfig({
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+    baseURL: 'https://iss-dev.lc.webdevprojects.cloud/',
+    credentials: {
+      username: 'vikas@mailinator.com',
+      password: 'Test@123'
+    }
   },
   projects: [
     {
