@@ -1,0 +1,43 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - checkout: self
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      npm ci
+    displayName: 'Install Dependencies'
+
+  - script: |
+      npx playwright install --with-deps
+    displayName: 'Install Playwright Browsers'
+
+  - script: |
+      # Placeholder command since no tests exist yet
+      echo "Running tests..."
+      # npx playwright test --config=configs/staging.config.js
+    displayName: 'Run Playwright Tests'
+    continueOnError: true
+
+  - task: PublishTestResults@2
+    displayName: 'Publish JUnit Results'
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: 'results.xml'
+
+  - task: PublishPipelineArtifact@1
+    displayName: 'Publish Playwright Report'
+    condition: succeededOrFailed()
+    inputs:
+      targetPath: 'playwright-report'
+      artifact: 'playwright-report'
+      publishLocation: 'pipeline'

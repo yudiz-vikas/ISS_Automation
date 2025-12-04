@@ -1,0 +1,23 @@
+{
+  "name": "playwright-automation-framework",
+  "version": "1.0.0",
+  "description": "Playwright automation framework in JavaScript (ES modules)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:dev": "npx playwright test --config=configs/dev.config.js",
+    "test:staging": "npx playwright test --config=configs/staging.config.js",
+    "test:prod": "npx playwright test --config=configs/prod.config.js"
+  },
+  "keywords": [
+    "playwright",
+    "automation",
+    "testing"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  }
+}
