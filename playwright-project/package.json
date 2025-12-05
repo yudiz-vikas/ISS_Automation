@@ -5,10 +5,15 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "pretest": "node -e \"const fs = require('fs'); ['allure-results', 'allure-report'].forEach(dir => { try { fs.rmSync(dir, { recursive: true, force: true }); } catch(e) {} })\"",
     "test": "npx playwright test",
     "test:dev": "npx playwright test --config=configs/dev.config.js",
     "test:staging": "npx playwright test --config=configs/staging.config.js",
-    "test:prod": "npx playwright test --config=configs/prod.config.js"
+    "test:prod": "npx playwright test --config=configs/prod.config.js",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:clean": "node -e \"const fs = require('fs'); ['allure-results', 'allure-report'].forEach(dir => { try { fs.rmSync(dir, { recursive: true, force: true }); } catch(e) {} })\"",
+    "allure:serve": "allure generate allure-results --clean -o allure-report && allure open allure-report"
   },
   "keywords": [
     "playwright",
@@ -18,6 +23,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.40.0"
+    "@playwright/test": "^1.40.0",
+    "allure-commandline": "^2.34.1",
+    "allure-playwright": "^3.4.3"
   }
 }

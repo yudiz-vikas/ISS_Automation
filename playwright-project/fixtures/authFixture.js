@@ -1,5 +1,10 @@
 import { test as base } from '@playwright/test';
 import { SigninPage } from '../page-objects/SigninPage.js';
+import { LogoutPage } from '../page-objects/LogoutPage.js';
+import { ConsultantsPage } from '../page-objects/ConsultantsPage.js';
+import { InviteUserPage } from '../page-objects/InviteUserPage.js';
+import { ForgotPasswordPage } from '../page-objects/ForgotPasswordPage.js';
+import { ResetPasswordPage } from '../page-objects/ResetPasswordPage.js';
 
 /**
  * Auth fixture to handle login/session states.
@@ -17,6 +22,31 @@ export const test = base.extend({
     signinPage: async ({ page }, use) => {
         const signinPage = new SigninPage(page);
         await use(signinPage);
+    },
+
+    logoutPage: async ({ page }, use) => {
+        const logoutPage = new LogoutPage(page);
+        await use(logoutPage);
+    },
+
+    consultantsPage: async ({ page }, use) => {
+        const consultantsPage = new ConsultantsPage(page);
+        await use(consultantsPage);
+    },
+
+    inviteUserPage: async ({ page }, use) => {
+        const inviteUserPage = new InviteUserPage(page);
+        await use(inviteUserPage);
+    },
+
+    forgotPasswordPage: async ({ page }, use) => {
+        const forgotPasswordPage = new ForgotPasswordPage(page);
+        await use(forgotPasswordPage);
+    },
+
+    resetPasswordPage: async ({ page }, use) => {
+        const resetPasswordPage = new ResetPasswordPage(page);
+        await use(resetPasswordPage);
     },
 
     // Example of an authenticated page fixture

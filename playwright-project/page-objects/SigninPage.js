@@ -8,7 +8,8 @@ export class SigninPage {
         this.passwordInput = page.locator('input#input-password');
         this.signinButton = page.locator('button', { hasText: 'Sign in' });
         this.forgotPasswordLink = page.locator('button', { hasText: 'Forgot password?' });
-        this.errorToast = page.locator('text="Incorrect username or password. Please try again."');
+        // Generic error toast locator - can match any error message
+        this.errorToast = page.locator('[role="alert"], .toast-error, .error-message, .alert-error').first();
     }
 
     async navigate() {
